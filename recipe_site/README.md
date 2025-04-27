@@ -28,3 +28,10 @@ Users can view recipes, search by ingredients, and filter based on medical condi
    ```bash
    git clone https://github.com/Carlos-CC23/Project-for-Software.git
    cd Project-for-Software
+
+
+## Links to Access Webpage & Admin:
+
+Webpage: http://127.0.0.1:8000/recipes/
+
+Admin: http://127.0.0.1:8000/admin/
