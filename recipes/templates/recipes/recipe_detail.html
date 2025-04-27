@@ -1,0 +1,74 @@
+{% load static %}
+{% load i18n %}
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="{% static 'recipes/assets/css/main.css' %}" />
+  <noscript><link rel="stylesheet" href="{% static 'recipes/assets/css/noscript.css' %}" /></noscript>
+  <title>{{ recipe.name }} - Healthy Recipe Hub</title>
+</head>
+
+<body class="is-preload">
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <div class="inner" style="margin: auto; width: 80%; max-width: 800px; padding: 2rem;">
+
+      <!-- Title -->
+      <h1 style="text-align: center;">{{ recipe.name }}</h1>
+
+      <!-- Image -->
+      {% if recipe.image %}
+        <div style="text-align: center; margin-top: 1rem;">
+          <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" style="max-width: 100%; border-radius: 12px;">
+        </div>
+      {% endif %}
+
+      <!-- Ingredients -->
+      <div style="margin-top: 2rem; padding: 1rem; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
+        <h3>{% trans "Ingredients" %}</h3>
+        <ul>
+          {% for ingredient in recipe.ingredients.splitlines %}
+            {% if ingredient %}
+              <li>{{ ingredient }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+
+      <!-- Preparation Steps -->
+      <div style="margin-top: 2rem; padding: 1rem; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
+        <h3>{% trans "Preparation" %}</h3>
+        <p>{{ recipe.preparation_steps|linebreaks }}</p>
+      </div>
+
+      <!-- Nutritional Info -->
+      <div style="margin-top: 2rem; padding: 1rem; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
+        <h3>{% trans "Nutritional Information" %}</h3>
+        <ul>
+          {% for info in recipe.nutritional_info.splitlines %}
+            {% if info %}
+              <li>{{ info }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+
+      <!-- Medical Conditions -->
+      <div style="margin-top: 2rem; padding: 1rem; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
+        <h3>{% trans "Medical Conditions" %}</h3>
+        <p>{{ recipe.medical_conditions }}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="{% static 'recipes/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'recipes/assets/js/browser.min.js' %}"></script>
+  <script src="{% static 'recipes/assets/js/breakpoints.min.js' %}"></script>
+  <script src="{% static 'recipes/assets/js/util.js' %}"></script>
+  <script src="{% static 'recipes/assets/js/main.js' %}"></script>
+</body>

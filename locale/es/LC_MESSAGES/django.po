@@ -1,0 +1,232 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-24 11:21-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+
+#: .\recipes\templates\recipes\recipe_detail.html:29
+msgid "Ingredients"
+msgstr "Ingredientes"
+
+#: .\recipes\templates\recipes\recipe_detail.html:35
+msgid "Preparation"
+msgstr "Preparación"
+
+#: .\recipes\templates\recipes\recipe_detail.html:41
+msgid "Nutritional Information"
+msgstr "Información Nutricional"
+
+#: .\recipes\templates\recipes\recipe_detail.html:47
+msgid "Medical Conditions"
+msgstr "Condiciones médicas"
+
+#: .\recipes\templates\recipes\recipe_list.html:22
+#: .\recipes\templates\recipes\recipe_list.html:55
+msgid "Healthy Recipe Hub"
+msgstr "Centro De Recetas Saludables"
+
+#: .\recipes\templates\recipes\recipe_list.html:31
+msgid "Change"
+msgstr "Cambiar"
+
+#: .\recipes\templates\recipes\recipe_list.html:56
+msgid "Find All Your Healthy Recipes Here!"
+msgstr "¡Encuentre aquí todas sus recetas saludables!"
+
+#: .\recipes\templates\recipes\recipe_list.html:66
+msgid "Search by name"
+msgstr "Buscar por nombre"
+
+#: .\recipes\templates\recipes\recipe_list.html:70
+msgid "Filter by Condition"
+msgstr "Filtrar por condición"
+
+#: .\recipes\templates\recipes\recipe_list.html:80
+msgid "Search"
+msgstr "Buscar"
+
+#: .\recipes\templates\recipes\recipe_list.html:88
+msgid "Show All Recipes"
+msgstr "Mostrar Todas Las Recetas"
+
+#: .\recipes\templates\recipes\recipe_list.html:92
+#: .\recipes\templates\recipes\recipe_list.html:146
+msgid "Calorie Calculator"
+msgstr "Calculadora De Calorías"
+
+#: .\recipes\templates\recipes\recipe_list.html:116
+msgid "No Recipes Found"
+msgstr "No Se Han Encontrado Recetas"
+
+#: .\recipes\templates\recipes\recipe_list.html:123
+msgid "<< First"
+msgstr "<< Primera"
+
+#: .\recipes\templates\recipes\recipe_list.html:124
+msgid "Previous"
+msgstr "Anterior"
+
+#: .\recipes\templates\recipes\recipe_list.html:126
+msgid "Page"
+msgstr "Página"
+
+#: .\recipes\templates\recipes\recipe_list.html:126
+msgid "of"
+msgstr "de"
+
+#: .\recipes\templates\recipes\recipe_list.html:128
+msgid "Next"
+msgstr "Siguiente"
+
+#: .\recipes\templates\recipes\recipe_list.html:129
+msgid "Last >>"
+msgstr "Última >>"
+
+#: .\recipes\templates\recipes\recipe_list.html:135
+msgid ""
+"*This website is for educational purposes only. Consult with your doctor "
+"before engaging in these recipes.*"
+msgstr ""
+"*Este sitio web sólo tiene fines educativos. Consulte con su médico antes de "
+"utilizar estas recetas.*"
+
+#: .\recipes\templates\recipes\recipe_list.html:152
+msgid "Gender:"
+msgstr "Género:"
+
+#: .\recipes\templates\recipes\recipe_list.html:153
+msgid "Male"
+msgstr "Hombre"
+
+#: .\recipes\templates\recipes\recipe_list.html:154
+msgid "Female"
+msgstr "Mujer"
+
+#: .\recipes\templates\recipes\recipe_list.html:158
+msgid "Age (Years):"
+msgstr "Edad (años):"
+
+#: .\recipes\templates\recipes\recipe_list.html:159
+msgid "e.g. 30"
+msgstr "p. ej. 30"
+
+#: .\recipes\templates\recipes\recipe_list.html:164
+msgid "Height (in):"
+msgstr "Altura (pulgadas):"
+
+#: .\recipes\templates\recipes\recipe_list.html:165
+msgid "e.g. 66"
+msgstr "p. ej. 66"
+
+#: .\recipes\templates\recipes\recipe_list.html:170
+msgid "Weight (lbs):"
+msgstr "Peso (libras):"
+
+#: .\recipes\templates\recipes\recipe_list.html:171
+msgid "e.g. 150"
+msgstr "p. ej. 150"
+
+#: .\recipes\templates\recipes\recipe_list.html:176
+msgid "Activity Level:"
+msgstr "Nivel De Actividad:"
+
+#: .\recipes\templates\recipes\recipe_list.html:178
+msgid "Sedentary"
+msgstr "Sedentario"
+
+#: .\recipes\templates\recipes\recipe_list.html:179
+msgid "Lightly Active"
+msgstr "Ligeramente Activo"
+
+#: .\recipes\templates\recipes\recipe_list.html:180
+msgid "Moderately Active"
+msgstr "Moderadamente Activo"
+
+#: .\recipes\templates\recipes\recipe_list.html:181
+msgid "Very Active"
+msgstr "Muy Activo"
+
+#: .\recipes\templates\recipes\recipe_list.html:182
+msgid "Extremely Active"
+msgstr "Extremadamente Activo"
+
+#: .\recipes\templates\recipes\recipe_list.html:188
+msgid "Goal:"
+msgstr "Objetivo:"
+
+#: .\recipes\templates\recipes\recipe_list.html:190
+msgid "Maintain Weight"
+msgstr "Mantener El Peso"
+
+#: .\recipes\templates\recipes\recipe_list.html:191
+msgid "Weight Loss"
+msgstr "Pérdida De Peso"
+
+#: .\recipes\templates\recipes\recipe_list.html:192
+msgid "Muscle Gain"
+msgstr "Ganancia Muscular"
+
+#: .\recipes\templates\recipes\recipe_list.html:200
+msgid "Calculate Calories"
+msgstr "Calcular Calorías"
+
+#: .\recipes\templates\recipes\recipe_list.html:212
+msgid "Your BMR:"
+msgstr "Su TMB:"
+
+#: .\recipes\templates\recipes\recipe_list.html:212
+#: .\recipes\templates\recipes\recipe_list.html:213
+#: .\recipes\templates\recipes\recipe_list.html:214
+msgid "calories/day"
+msgstr "calorías/día"
+
+#: .\recipes\templates\recipes\recipe_list.html:213
+#, fuzzy
+#| msgid "Your TDEE"
+msgid "Your TDEE:"
+msgstr "Su GED:"
+
+#: .\recipes\templates\recipes\recipe_list.html:214
+msgid "Recommended Intake:"
+msgstr "Ingesta Recomendada:"
+
+#: .\recipes\templates\recipes\recipe_list.html:216
+msgid "Macronutrient Breakdown:"
+msgstr "Distribución De Macronutrientes:"
+
+#: .\recipes\templates\recipes\recipe_list.html:218
+msgid "Protein:"
+msgstr "Proteínas:"
+
+#: .\recipes\templates\recipes\recipe_list.html:219
+msgid "Carbs:"
+msgstr "Carbohidratos:"
+
+#: .\recipes\templates\recipes\recipe_list.html:220
+msgid "Fat:"
+msgstr "Grasa:"
+
+#: .\recipes\views.py:100
+msgid "Please enter valid numeric values for height, weight, and age."
+msgstr "Ingrese valores numéricos válidos para altura, peso y edad."
+
+#~ msgid "Popular Recipe"
+#~ msgstr "Receta Popular"
+
+#~ msgid "View Recipe"
+#~ msgstr "Ver Receta"

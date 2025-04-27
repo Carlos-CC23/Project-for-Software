@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load i18n %}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  
+  <!-- your existing CSS -->
+  <link rel="stylesheet" href="{% static 'recipes/assets/css/main.css' %}" />
+  <noscript><link rel="stylesheet" href="{% static 'recipes/assets/css/noscript.css' %}" /></noscript>
+  
+  <!-- ↓ add Font-Awesome here ↓ -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-INSERT-THE-ACTUAL-HASH-HERE"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <title>{% trans "Healthy Recipe Hub" %}</title>
+
+
+<!-- <form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language">
+        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+        <option value="es" {% if LANGUAGE_CODE == 'es' %}selected{% endif %}>Español</option>
+    </select>
+    <input type="submit" value="{% trans "Change" %}">
+</form> -->
+
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language" onchange="this.form.submit()">
+        <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+        <option value="es" {% if request.LANGUAGE_CODE == 'es' %}selected{% endif %}>Español</option>
+    </select>
+</form>
+
+
+
+
+</head>
+
+
+<body class="is-preload">
+  <div id="wrapper">
+    <div id="main">
+      <div class="inner">
+
+        <!-- 1) Page Header -->
+        <header class="page-header">
+          <h1>{% trans "Laredo Public Health" %}</h1>
+          <p>{% trans "Find All Your Healthy Recipes Here!" %}</p>
+
+        </header>
+
+        <!-- 2) Search & Filter Row -->
+        <section class="search-wrapper">
+          <form method="GET" action="{% url 'recipe_list' %}" class="search-container">
+                    <input
+                      type="text"
+                      name="recipe_name"
+                      placeholder="{% trans "Search by name" %}"
+                      value="{{ request.GET.recipe_name }}"
+                    />
+                    <select name="medical_condition">
+                      <option value="">{% trans "Filter by Condition" %}</option>
+                      {% for condition in medical_conditions %}
+                        <option
+                          value="{{ condition }}"
+                          {% if request.GET.medical_condition == condition %}selected{% endif %}
+                        >
+                          {{ condition }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                    <button type="submit" class="button">{% trans "Search" %}</button>
+                  </form>
+                </section>
+
+               <!-- 3) Action Buttons -->
+                <section class="action-buttons">
+                    <div class="button-container">
+                    <!-- Show All Recipes -->
+                    <form method="GET" action="{% url 'recipe_list' %}">
+                        <button type="submit" class="button">{% trans "Show All Recipes" %}</button>
+                    </form>
+                
+                    <!-- Calorie Calculator -->
+                    <button id="calorieButton" class="button">{% trans "Calorie Calculator" %}</button>
+                    </div>
+                </section>
+              <!-- ★ Featured Recipe -->
+              
+        <!-- 4) Recipe Tiles -->
+        <section class="tiles">
+          {% for recipe in page_obj %}
+            <article class="style1">
+              <span class="image">
+                {% if recipe.image %}
+                  <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" />
+                {% else %}
+                  <img src="{% static 'recipes/media/recipe_images/backup.jpg' %}" alt="Default" />
+                {% endif %}
+              </span>
+              <a href="{% url 'recipe_detail' recipe.id %}">
+                <h2>{{ recipe.name }}</h2>
+                <div class="content">
+                  <p>{{ recipe.details }}</p>
+                </div>
+              </a>
+            </article>
+          {% empty %}
+            <p>{% trans "No Recipes Found" %}</p>
+          {% endfor %}
+        </section>
+
+        <!-- 5) Pagination -->
+        <div class="pagination">
+          {% if page_obj.has_previous %}
+            <a href="?page=1">{% trans "<< First" %}</a>
+            <a href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+          {% endif %}
+          <span>{% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}</span>
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">{% trans "Last >>" %}</a>
+          {% endif %}
+        </div>
+
+        <!-- 6) Disclaimer -->
+        <p class="disclaimer" style="color: #f00000; font-size: 15px; background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+{% trans "*This website is for educational purposes only. Consult with your doctor before engaging in these recipes.*" %} 
+        </p>
+
+        <!-- Health Department Contact Info -->
+        <section class="contact-info" style="margin-top: 2rem; padding: 1rem; border: 1px solid #ccc; border-radius: 10px; background-color: #f0f0f0;">
+          <h3><i class="fas fa-map-marker-alt"></i> Laredo Health Department</h3>
+          <p>2600 Cedar Ave<br>
+            P.O. Box 2337<br>
+            Laredo, TX 78044-2337</p>
+
+          <p><i class="fas fa-phone"></i> (956) 795-4900<br>
+            <i class="fas fa-fax"></i> (956) 726-2632 Fax</p>
+
+          <p><i class="fas fa-envelope"></i> 
+            <a href="mailto:CLHD@ci.laredo.tx.us">CLHD@ci.laredo.tx.us</a></p>
+        </section>
+
+
+      </div> <!-- /.inner -->
+    </div> <!-- /#main -->
+  </div>   <!-- /#wrapper -->
+
+  <!-- Calorie Calculator Modal (old style) -->
+<div id="calorieModal" style="display: none; position: fixed; z-index: 5; left: 0; top: 0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.4);">
+    <div style="background-color:#fefefe; margin:15% auto; padding:20px; border:1px solid #888; width:80%; max-width:500px;">
+      <span id="closeModal" style="color:#aaa; float:right; font-size:28px; font-weight:bold; cursor:pointer;">&times;</span>
+      <h2 style="text-align:center;">{% trans "Calorie Calculator" %}</h2>
+  
+      <form method="POST" action="{% url 'calculate_calories' %}">
+        {% csrf_token %}
+  
+        <!-- Gender as radio buttons -->
+        <label><strong>{% trans "Gender:" %}</strong></label>
+        <input type="radio" id="male"   name="gender" value="male"   {% if form_data.gender == 'male' or not form_data.gender %}checked{% endif %}> <label for="male">{% trans "Male" %}</label>
+        <input type="radio" id="female" name="gender" value="female" {% if form_data.gender == 'female' %}checked{% endif %}> <label for="female">{% trans "Female" %}</label>
+  
+        <!-- Age -->
+        <div style="margin:10px 0;">
+          <label for="age">{% trans "Age (Years):" %}</label>
+          <input type="number" id="age" name="age" style="width:100%;" placeholder="{% trans "e.g. 30" %}" value="{{ form_data.age|default:'' }}">
+        </div>
+  
+        <!-- Height -->
+        <div style="margin:10px 0;">
+          <label for="height">{% trans "Height (in):" %}</label>
+          <input type="number" id="height" name="height" style="width:100%;" placeholder="{% trans "e.g. 66" %}" value="{{ form_data.height|default:'' }}">
+        </div>
+  
+        <!-- Weight -->
+        <div style="margin:10px 0;">
+          <label for="weight">{% trans "Weight (lbs):" %}</label>
+          <input type="number" id="weight" name="weight" style="width:100%;" placeholder="{% trans "e.g. 150" %}" value="{{ form_data.weight|default:'' }}">
+        </div>
+  
+        <!-- Activity Level -->
+        <div style="margin:10px 0;">
+          <label for="activity_level">{% trans "Activity Level:" %}</label>
+          <select id="activity_level" name="activity_level" style="width:100%;">
+            <option value="1.2"   {% if form_data.activity_level == 1.2 or not form_data.activity_level %}selected{% endif %}>{% trans "Sedentary" %}</option>
+            <option value="1.375" {% if form_data.activity_level == 1.375 %}selected{% endif %}>{% trans "Lightly Active" %}</option>
+            <option value="1.55"  {% if form_data.activity_level == 1.55 %}selected{% endif %}>{% trans "Moderately Active" %}</option>
+            <option value="1.725" {% if form_data.activity_level == 1.725 %}selected{% endif %}>{% trans "Very Active" %}</option>
+            <option value="1.9"   {% if form_data.activity_level == 1.9 %}selected{% endif %}>{% trans "Extremely Active" %}</option>
+          </select>
+        </div>
+  
+        <!-- Goal -->
+        <div style="margin:10px 0 20px;">
+          <label for="goal">{% trans "Goal:" %}</label>
+          <select id="goal" name="goal" style="width:100%;">
+            <option value="maintain" {% if form_data.goal == 'maintain' or not form_data.goal %}selected{% endif %}>{% trans "Maintain Weight" %}</option>
+            <option value="loss"     {% if form_data.goal == 'loss'     %}selected{% endif %}>{% trans "Weight Loss" %}</option>
+            <option value="gain"     {% if form_data.goal == 'gain'     %}selected{% endif %}>{% trans "Muscle Gain" %}</option>
+          </select>
+        </div>
+  
+               <!-- Big green calculate button (using theme classes for perfect centering) -->
+               <button type="submit"
+               class="button fit"
+               style="background-color: #4CAF50; color: #fff;">
+         {% trans "Calculate Calories" %}
+       </button>
+      </form>
+  
+      {% if error %}
+        <div style="margin-top:15px; padding:10px; background-color:#ffdddd; border-left:6px solid #f44336;">
+          <p><strong>Error:</strong> {{ error }}</p>
+        </div>
+      {% endif %}
+  
+      {% if has_results %}
+        <div style="margin-top:20px; background-color:#f9f9f9; padding:15px; border:1px solid #ddd;">
+          <p><strong>{% trans "Your BMR:" %}</strong> {{ results.bmr }} {% trans "calories/day" %}</p>
+            <p><strong>{% trans "Your TDEE:" %}</strong> {{ results.tdee }} {% trans "calories/day" %}</p>
+            <p><strong>{% trans "Recommended Intake:" %}</strong> {{ results.recommended_calories }} {% trans "calories/day" %}</p>
+            <hr>
+            <p><strong>{% trans "Macronutrient Breakdown:" %}</strong></p>
+            <ul>
+              <li>{% trans "Protein:" %} {{ results.protein_grams }}g (30%)</li>
+              <li>{% trans "Carbs:" %}   {{ results.carbs_grams }}g (40%)</li>
+              <li>{% trans "Fat:" %}     {{ results.fat_grams }}g (30%)</li>
+            </ul>
+        </div>
+      {% endif %}
+    </div>
+  </div>  
+
+  <!-- Scripts -->
+  <script src="{% static 'recipes/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'recipes/assets/js/browser.min.js' %}"></script>
+  <script src="{% static 'recipes/assets/js/breakpoints.min.js' %}"></script>
+  <script src="{% static 'recipes/assets/js/util.js' %}"></script>
+  <script src="{% static 'recipes/assets/js/main.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('calorieModal');
+      const btn   = document.getElementById('calorieButton');
+      const close = document.getElementById('closeModal');
+
+      btn.addEventListener('click',  () => modal.style.display = 'block');
+      close.addEventListener('click',() => modal.style.display = 'none');
+      window.addEventListener('click', e => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+
+      {% if has_results or error %}
+        // If the view returned an error or results, auto-open:
+        modal.style.display = 'block';
+      {% endif %}
+    });
+  </script>
